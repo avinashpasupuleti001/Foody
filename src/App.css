@@ -1,0 +1,66 @@
+.applogo {
+   width: 100px;
+   padding: 10px;
+}
+ 
+.nav-items{
+  display: flex;
+  font-size: 20px;
+  gap: 30px;
+  list-style-type: none;
+  padding: 20px;
+}
+.App-header{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+.res-card {
+  width: 200px;
+  height: 400px;
+  background:rgb(112, 136, 112);
+  
+}
+.res-card:hover {
+  cursor: pointer;
+   border: 2px solid black;
+}
+.search{
+  width: 400px;
+  height: 30px;
+  border: 1px solid black;
+  
+}
+.res-logo{
+  width:190px;
+  height:110px;
+  padding: 5px;
+}
+.App-bodym{
+  background-color: rgb(144, 164, 144);
+}
+.restaurant-list{
+  display: flex;
+  gap: 90px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.App-body{
+  padding: 10px;
+  align-items: center;
+}
+.shammer-card{
+  width: 200px;
+  height: 400px;
+  background-color: rgb(112, 136, 112);
+}
+.shammer{
+  display: flex;
+  gap: 90px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.search{
+  text-align: center;
+}
