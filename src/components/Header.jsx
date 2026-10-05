@@ -9,6 +9,7 @@ function Header() {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact</Link></li>   
+        <li><Link to='/gocery'>Gocery</Link></li>
         <li>cart </li>
         <button className="login-btn" onClick={() => {
           if(val === "Login") {
