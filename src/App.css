@@ -64,3 +64,23 @@
 .search{
   text-align: center;
 }
+.promoted-container {
+  position: relative;
+}
+
+.promoted-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+
+  background-color: #eae5e5;
+  color: rgb(232, 82, 82);
+
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  z-index: 10;
+}
