@@ -1,6 +1,7 @@
 import './App.css'
 import Header from './components/Header.jsx'
 import Body from './components/Body.jsx'  
+import RestaurantDetails from './components/RestaurantDetails.jsx'
 // import About from './components/About.jsx'
 import Contact from './components/Contact.jsx'
 import React ,{Suspense} from 'react'
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantDetails />,
       },
       {
         path: "/about",

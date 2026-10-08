@@ -1,12 +1,12 @@
 
-function Res_Card({ rate, name, price, src1 }) {
+function Res_Card({ rate, name, price, src1, onClick }) {
   return (
-    <div className="res-card">
+    <button className="res-card" type="button" onClick={onClick}>
       <img className="res-logo" src={src1} alt={name} />
       <h2>{name}</h2>
       <h2>Rating: {rate}</h2>
       <h2>Price: {price}</h2>
-    </div>
+    </button>
   );
 }
 

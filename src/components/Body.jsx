@@ -1,7 +1,9 @@
 
 import Res_Card, { Rescardwithlabel } from "./Res_Card.jsx";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Shammer from "./Shammer.jsx";
+import { fetchRestaurants } from "../utils/restaurantData.js";
 
 const PromotedResCard = Rescardwithlabel(Res_Card);
 
@@ -9,39 +11,21 @@ function Body() {
   const [res, setRes] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRes, setFilteredRes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData();
+    const loadRestaurants = async () => {
+      try {
+        const restaurants = await fetchRestaurants();
+        setRes(restaurants);
+        setFilteredRes(restaurants);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    loadRestaurants();
   }, []);
-
-  const fetchData = async () => {
-    try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-      );
-
-      const json = await data.json();
-
-      const restaurantData =
-        json?.data?.cards[1]?.card?.card?.gridElements
-          ?.infoWithStyle?.restaurants || [];
-
-      const transformedData = restaurantData.map((restaurant) => ({
-        id: restaurant?.info?.id,
-        name: restaurant?.info?.name,
-        rate: restaurant?.info?.avgRating,
-        price: restaurant?.info?.costForTwo,
-        src: restaurant?.info?.cloudinaryImageId
-          ? `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurant.info.cloudinaryImageId}`
-          : "https://via.placeholder.com/300x200?text=No+Image",
-      }));
-
-      setRes(transformedData);
-      setFilteredRes(transformedData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
 
   if (res.length === 0) {
     return <Shammer />;
@@ -90,6 +74,11 @@ function Body() {
         {filteredRes.map((restaurant) => (
           <PromotedResCard
             key={restaurant.id}
+            onClick={() =>
+              navigate(`/restaurant/${restaurant.id}`, {
+                state: { restaurant },
+              })
+            }
             name={restaurant.name}
             rate={restaurant.rate}
             price={restaurant.price}
